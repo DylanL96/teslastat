@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import ca.sheridancollege.backend.Service.AnalystService;
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class MainController {
   
   @Autowired
@@ -28,7 +29,7 @@ public class MainController {
     return analystService.getAllAnalysts();
   }
 
-  @GetMapping("/add")
+  @PostMapping("/add")
   public String addAnalyst(@RequestBody Analyst analyst){
     analystService.saveAnalyst(analyst);
     return "New employee is added";
