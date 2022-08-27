@@ -1,11 +1,14 @@
 import React from 'react';
-import './App.css';
 import AnalystComponent from './Components/AnalystComponent';
+import CreateAnalyst from './Components/CreateAnalyst';
+import NavigationBar from './Components/NavigationBar';
 
 const App = () => {
   return (
-    <div className='App'>
+    <div>
+      <NavigationBar/>
       <AnalystComponent/>
+      <CreateAnalyst/>
     </div>
   )
 }
