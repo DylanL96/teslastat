@@ -13,7 +13,7 @@ Table{
   margin-top: 1%;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@import url("https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg");
 
 header {
   display: flex;
@@ -63,4 +63,10 @@ button {
 
 .form-control {
   width: 30%;
+}
+
+#navbarSupportedContent{
+  background-color: orange;
+  display: flex;
+  justify-content: flex-end;
 }

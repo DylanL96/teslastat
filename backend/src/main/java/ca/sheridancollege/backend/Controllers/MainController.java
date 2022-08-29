@@ -41,9 +41,11 @@ public class MainController {
     return "Deleted employee";
   }
 
-  @PutMapping("/update/{id}")
+  @PutMapping("/edit/{id}")
   public String updateAnalyst(@PathVariable Long id, @RequestBody Analyst analystDetails){
     analystService.updateAnalyst(analystDetails, id);
     return "Updated Employee";
   }
+
+  
 }
