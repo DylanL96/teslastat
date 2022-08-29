@@ -70,3 +70,7 @@ button {
   display: flex;
   justify-content: flex-end;
 }
+
+.financial-chart{
+  width: 96%;
+}
