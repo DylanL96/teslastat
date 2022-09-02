@@ -6,7 +6,7 @@ ChartJS.register(
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
 )
 
-const CashPage = () => {
+const SuperChargerPage = () => {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -22,23 +22,23 @@ const CashPage = () => {
     ],
       datasets: [
         {
-          label: "Cash",
-          data: [2968,
-            3686,
-            2198,
-            4955,
-            5338,
-            6268,
-            8080,
-            8615,
-            14531,
-            19384,
-            17141,
-            16229,
-            16065,
-            17576,
-            17505,
-            18324],
+          label: "Supercharger Stations",
+          data: [1352,
+            1421,
+            1490,
+            1587,
+            1653,
+            1821,
+            1917,
+            2035,
+            2181,
+            2564,
+            2699,
+            2966,
+            3254,
+            3476,
+            3724,
+            3971],
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: "rgb(53, 162, 235)",
         }
@@ -46,13 +46,21 @@ const CashPage = () => {
     });
     setChartOptions({
       responsive: true,
+      scales:{
+        x:{
+          stacked: true
+        },
+        y:{
+          stacked: true
+        }
+      },
       plugins: {
         legend: {
           position: "top",
         },
         title: {
           display: true,
-          text: "Tesla Quarterly Cash",
+          text: "Tesla Quarterly Superchargers Installed",
         }
       },
     });
@@ -64,4 +72,4 @@ const CashPage = () => {
   )
 }
 
-export default CashPage
+export default SuperChargerPage

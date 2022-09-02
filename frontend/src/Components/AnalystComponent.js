@@ -13,12 +13,15 @@ const AnalystComponent = () => {
   const [delPost, setDelPost] = useState([]);
   const [quantity, setQuantity] = useState('');
   const [stockPrice, setStockPrice] = useState('');
+  const [order, setOrder] = useState('ASC');
+  const [numOrder, setNumOrder] = useState('ASC');
 
   const getAnalystInformation = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/v1/getAll");
       setData(response.data);
-    }catch (error){
+      console.log(response.data)
+    } catch (error){
       console.log(error);
     }
   };
@@ -27,7 +30,6 @@ const AnalystComponent = () => {
     getAnalystInformation();
     // eslint-disable-next-line
   }, []);
-
 
   const getStockPrice = async () => {
     try{
@@ -42,6 +44,7 @@ const AnalystComponent = () => {
     getStockPrice();
   }, [])
 
+ 
   const deleteHandler = id => {
     axios.delete(`http://localhost:8080/api/v1/delete/${id}`)
       .then(result => {
@@ -53,73 +56,110 @@ const AnalystComponent = () => {
       })
   };
 
+
   const editHandler = id => {
     navigate(`/api/v1/${id}`)
   }
 
-  // const renderTable = () => {
-  //   return data?.map((dat) => (  // data? checks to see if data exists
-  //     <tr key={dat.id}>
-  //       <td>{dat.firm}</td>
-  //       <td>{dat.fullName}</td>
-  //       <td>{dat.priceTarget}</td>
-  //       <td>{dat.position}</td>
-  //       <td><FontAwesomeIcon icon={faTwitter}/>{dat.twitterHandle}</td>
-  //       <td>{(((dat.priceTarget - stockPrice) / stockPrice) * 100).toLocaleString()}</td>
-  //       <td>{(dat.priceTarget * quantity).toLocaleString()}</td>
-  //       <td id='trash-delete' onClick={()=>deleteHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
-  //       <td id='trash-delete' onClick={()=>editHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
-  //     </tr>
-  //   ))
-  // };
-
-  // DUMMY DATA
+ 
   const renderTable = () => {
-    return(
-      <tr>
-        <td>hi</td>
-        <td>hi</td>
-        <td>hi</td>
-        <td>hi</td>
-        <td>hi</td>
-        <td>hi</td>
-        <td>hi</td>
-        <td>hi</td>
-        <td>hi</td>
+    return data?.map((dat) => (  // data? checks to see if data exists
+      <tr key={dat.id}>
+        <td>{dat.firm}</td>
+        <td>{dat.fullName}</td>
+        <td>{dat.priceTarget}</td>
+        <td>{dat.position}</td>
+        <td><FontAwesomeIcon icon={faTwitter}/>{dat.twitterHandle}</td>
+        <td>{(((dat.priceTarget - stockPrice) / stockPrice) * 100).toLocaleString()}</td>
+        <td>{(dat.priceTarget * quantity).toLocaleString()}</td>
+        <td id='trash-delete' onClick={()=>deleteHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
+        <td id='trash-delete' onClick={()=>editHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
       </tr>
-    )
+    ))
+  };
+
+  const sortFunction = (col) => {
+    if(order === 'ASC'){
+      const sorted = [...data].sort((a,b) => a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+      );
+      setData(sorted);
+      setOrder('DSC')
+    }
+    if(order === 'DSC'){
+      const sorted = [...data].sort((a,b) => a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+      );
+      setData(sorted);
+      setOrder('ASC')
+    }
   }
 
-  return (
-    <>
-    <div>
-      <label>Enter current amount of shares: </label>
-      <input type="number" placeholder='Enter amount' onChange={e => setQuantity(e.target.value)}/>
-      Current Stock Price: {stockPrice}
-    </div>
-      <Table className="table" striped bordered hover size='sm'>
-      <thead>
-        <tr >
-          <th>FIRM</th>
-          <th>Analyst</th>
-          <th>Price Target ($)</th>
-          <th>Position</th>
-          <th>Social Media</th>
-          <th>Percent Upside %</th>
-          <th>Potential Value ($)</th>
-          <th>Delete</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody>
-        {renderTable()}
-        </tbody>
-        </Table>  
-    </>
+  const sortNumFunction = (col) => {
+    if(numOrder === 'ASC'){
+      const sorted = [...data].sort((a,b) => a[col] - b[col]
+      );
+      setData(sorted);
+      setNumOrder('DSC')
+    }
+    if(numOrder === 'DSC'){
+      const sorted = [...data].sort((a,b) =>b[col] - a[col]
+      );
+      setData(sorted);
+      setNumOrder('ASC')
+    }
+  }
   
+ 
+  return (
+    <React.Fragment>
+      {/* Center container */}
+      <div className='center-container'>
+        {/* Message Section */}
+
+        <div className='message-container'>
+          <div className="stock-name-section"> 
+            <p className="stock-name">Tesla Inc.</p>
+            <label className="stock-sign-label">$TSLA </label>
+          </div>
+          <div className="stock-price-section">
+             <p className="mrkt-info">as of open</p>
+             <p className="stock-price">
+              {stockPrice}
+             </p>
+          </div>
+        </div>
+         <p className="last-updated"> Last Updated: Aug 31 2022 11:42AM EST</p>
+
+        {/* Input Section */}
+          <div className='input-section'>
+            <label>Your Number of Shares: </label>
+            <input className="textInputBox" type="number" placeholder='# of shares..' onChange={e => setQuantity(e.target.value)}/>
+          </div>
+      </div>
+
+        {/* Table Section */}
+        <div className='table-section'>
+          <Table className="table" striped bordered hover size='sm'>
+            <thead>
+              <tr >
+                <th onClick= {()=>sortFunction('firm')}>FIRM</th>
+                <th onClick= {()=>sortFunction('fullName')}>Analyst</th>
+                <th onClick= {()=>sortNumFunction('priceTarget')}>Price Target ($)</th>
+                <th>Position</th>
+                <th>Social Media</th>
+                <th>Percent Upside %</th>
+                <th>Potential Value ($)</th>
+                <th>Delete</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+              <tbody>
+              {renderTable()}
+              </tbody>
+            </Table> 
+        </div>
+    </React.Fragment>
   )
+
 }
-
-
 
 export default AnalystComponent;

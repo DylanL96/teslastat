@@ -100,7 +100,7 @@ const RevOpIncome = () => {
     });
   }, []);
   return (
-    <div className="BarExample">
+    <div className="financial-chart">
         <Bar options={chartOptions} data={chartData} />
     </div>
   )

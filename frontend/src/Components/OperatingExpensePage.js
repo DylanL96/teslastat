@@ -6,7 +6,7 @@ ChartJS.register(
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
 )
 
-const DeliveryPage = () => {
+const OperatingExpensePage = () => {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -22,46 +22,67 @@ const DeliveryPage = () => {
     ],
       datasets: [
         {
-          label: "Model S/X",
-          data: [27660, 
-            27607, 
-            12091, 
-            17722,
-            17483,
-            19475,
-            12230,
-            10614,
-            15275,
-            18966,
-            2030,
-            1896,
-            9289,
-            11766,
-            14724,
-            16162],
+          label: "R&D",
+          data: [351,
+            356,
+            340,
+            324,
+            334,
+            345,
+            324,
+            279,
+            366,
+            522,
+            666,
+            576,
+            611,
+            740,
+            865,
+            667],
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: "rgb(53, 162, 235)",
         },
         {
-          label: "Model 3/Y",
-          data: [55840,
-            63359,
-            50928,
-            77634,
-            79703,
-            92620,
-            76266,
-            80227,
-            124318,
-            161700,
-            182847,
-            199409,
-            232102,
-            296884,
-            295324,
-            238533],
+          label: "SG&A",
+          data: [730,
+            667,
+            704,
+            647,
+            596,
+            699,
+            627,
+            661,
+            888,
+            969,
+            1056,
+            973,
+            994,
+            1494,
+            992,
+            961],
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: "rgba(53, 162, 235, 0.4)",
+        },
+        {
+          label: "Other OpEx",
+          data: [26,
+            6,
+            43,
+            117,
+            0,
+            -12,
+            0,
+            0,
+            0,
+            0,
+            -101,
+            23,
+            51,
+            0,
+            0,
+            142],
+          borderColor: "rgb(51, 255, 255)",
+          backgroundColor: "rgb(51, 255, 255)",
         }
       ],
     });
@@ -79,7 +100,7 @@ const DeliveryPage = () => {
         tooltip: {
           callbacks: {
             footer: function(items) {
-              return 'Total Deliveries: ' + items.reduce((a, b) => a + b.parsed.y, 0).toLocaleString()
+              return 'Total: ' + items.reduce((a, b) => a + b.parsed.y, 0).toLocaleString()
             }
           }
       },
@@ -88,7 +109,7 @@ const DeliveryPage = () => {
         },
         title: {
           display: true,
-          text: "Tesla Quarterly Deliveries By Segment",
+          text: "Tesla Quarterly Operating Expenses",
         }
       },
     });
@@ -100,4 +121,4 @@ const DeliveryPage = () => {
   )
 }
 
-export default DeliveryPage
+export default OperatingExpensePage
