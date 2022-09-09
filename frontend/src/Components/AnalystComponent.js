@@ -4,23 +4,23 @@ import Table from 'react-bootstrap/Table';
 import {API_KEY} from '../utils/config'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash} from '@fortawesome/free-solid-svg-icons';
-import {faTwitter} from "@fortawesome/free-brands-svg-icons";
 import {useNavigate} from 'react-router-dom';
 
 const AnalystComponent = () => {
   let navigate = useNavigate();
   const [data, setData] = useState();
+  const [date, setDate] = useState();
   const [delPost, setDelPost] = useState([]);
   const [quantity, setQuantity] = useState('');
   const [stockPrice, setStockPrice] = useState('');
   const [order, setOrder] = useState('ASC');
   const [numOrder, setNumOrder] = useState('ASC');
+  
 
   const getAnalystInformation = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/v1/getAll");
       setData(response.data);
-      console.log(response.data)
     } catch (error){
       console.log(error);
     }
@@ -35,6 +35,8 @@ const AnalystComponent = () => {
     try{
       const response = await axios.get(`https://finnhub.io/api/v1/quote?symbol=TSLA&token=${API_KEY}`);
       setStockPrice(response.data.c)
+      console.log(response.data)
+      setDate(((response.data)))
     }catch(error){
       console.log(error)
     }
@@ -69,7 +71,6 @@ const AnalystComponent = () => {
         <td>{dat.fullName}</td>
         <td>{dat.priceTarget}</td>
         <td>{dat.position}</td>
-        <td><FontAwesomeIcon icon={faTwitter}/>{dat.twitterHandle}</td>
         <td>{(((dat.priceTarget - stockPrice) / stockPrice) * 100).toLocaleString()}</td>
         <td>{(dat.priceTarget * quantity).toLocaleString()}</td>
         <td id='trash-delete' onClick={()=>deleteHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
@@ -127,7 +128,8 @@ const AnalystComponent = () => {
              </p>
           </div>
         </div>
-         <p className="last-updated"> Last Updated: Aug 31 2022 11:42AM EST</p>
+        {/* Bc this is async, we put ? so that date would finish loading and then displays */}
+         <p className="last-updated"> Last Updated: {(Date(date?.t))} </p>
 
         {/* Input Section */}
           <div className='input-section'>
@@ -144,10 +146,9 @@ const AnalystComponent = () => {
                 <th onClick= {()=>sortFunction('firm')}>FIRM</th>
                 <th onClick= {()=>sortFunction('fullName')}>Analyst</th>
                 <th onClick= {()=>sortNumFunction('priceTarget')}>Price Target ($)</th>
-                <th>Position</th>
-                <th>Social Media</th>
-                <th>Percent Upside %</th>
-                <th>Potential Value ($)</th>
+                <th onClick= {()=>sortFunction('position')}>Position</th>
+                <th>Upside/Downside %</th>
+                <th>Your Potential Value ($)</th>
                 <th>Delete</th>
                 <th>Edit</th>
               </tr>

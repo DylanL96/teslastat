@@ -30,7 +30,7 @@ const NavigationBar = () => {
                   <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Tesla Financials
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
                     <a className="dropdown-item" href="/delivery">Delivery's</a>
                     <a className="dropdown-item" href="/income">Revenue and Operating Income</a>
                     <a className="dropdown-item" href="/operatingexpense">Operating Expenses</a>

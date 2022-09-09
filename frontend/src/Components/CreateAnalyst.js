@@ -9,13 +9,12 @@ const CreateAnalyst = () => {
     fullName: '',
     priceTarget: '',
     position: '',
-    twitterHandle: '',
     successMessage: false,
     errorMessage: false,
     loading: false
   });
 
-  const {firm, fullName, priceTarget, position, twitterHandle, successMessage, errorMessage} = analystData;
+  const {firm, fullName, priceTarget, position, successMessage, errorMessage} = analystData;
 
   const handleChange = event => {
     setAnalystData({
@@ -28,7 +27,7 @@ const CreateAnalyst = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if(firm === '' || fullName === '' || priceTarget === '' || position === '' || twitterHandle === ''){
+    if(firm === '' || fullName === '' || priceTarget === '' || position === ''){
       setAnalystData({
         ...analystData,
         errorMessage: 'All fields are required'
@@ -67,10 +66,6 @@ const CreateAnalyst = () => {
       <div className="form-group">
         <label htmlFor="exampleInputDescription">Enter Position</label>
         <input name="position" className="form-control" id="exampleInputDescription" aria-describedby="descriptionHelp" onChange={handleChange}/>
-      </div>
-      <div className="form-group">
-        <label htmlFor="exampleInputDescription">Enter Twitter Handle</label>
-        <input name="twitterHandle" className="form-control" id="exampleInputDescription" aria-describedby="descriptionHelp" onChange={handleChange}/>
       </div>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>
