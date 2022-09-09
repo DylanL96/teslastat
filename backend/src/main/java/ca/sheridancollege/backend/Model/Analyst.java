@@ -23,6 +23,6 @@ public class Analyst {
   private String fullName;
   private double priceTarget;
   private String position;
-  private String twitterHandle;
+  // private String twitterHandle;
 
 }

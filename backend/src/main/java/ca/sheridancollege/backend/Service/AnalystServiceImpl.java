@@ -37,7 +37,7 @@ public class AnalystServiceImpl implements AnalystService {
     specificAnalyst.setFirm(analyst.getFirm());
     specificAnalyst.setPosition(analyst.getPosition());
     specificAnalyst.setPriceTarget(analyst.getPriceTarget());
-    specificAnalyst.setTwitterHandle(analyst.getTwitterHandle());
+    // specificAnalyst.setTwitterHandle(analyst.getTwitterHandle());
     return analystRepository.save(specificAnalyst);
   }
   

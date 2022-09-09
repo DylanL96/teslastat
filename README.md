@@ -1,1 +1,4 @@
-Creating a Tesla price target website
+Created a Tesla website that compiles important financial data relating to Tesla all in one place. For example,
+I have created a table of most of the notable financial analysts that have a price target on Tesla (TSLA). There are other tabs that display other important financial data about TSLA such as free cash flow, gross margin etc. The financial data relating to TSLA is sourced directly from HyperCharts (https://hypercharts.co/tsla).
+
+The reason why I wanted to do this was because I have huge interest in Tesla and that while the internet is a great source to find data about anything, the data can be scattered all over the place, and I wanted to compile all of the financial data into one spot to make it easier for people to find TSLA specific data. For example, Tesla price targets from differ from institution to instituion with varying models, so I thought it would be a good idea to compile all of the price targets into one table so people can see the data in a much clearer way.
