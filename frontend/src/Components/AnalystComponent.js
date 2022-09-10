@@ -73,8 +73,8 @@ const AnalystComponent = () => {
         <td>{dat.position}</td>
         <td>{(((dat.priceTarget - stockPrice) / stockPrice) * 100).toLocaleString()}</td>
         <td>{(dat.priceTarget * quantity).toLocaleString()}</td>
-        <td id='trash-delete' onClick={()=>deleteHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
-        <td id='trash-delete' onClick={()=>editHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
+        {/* <td id='trash-delete' onClick={()=>deleteHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td>
+        <td id='trash-delete' onClick={()=>editHandler(dat.id)}><FontAwesomeIcon icon={faTrash}/></td> */}
       </tr>
     ))
   };
@@ -149,8 +149,8 @@ const AnalystComponent = () => {
                 <th onClick= {()=>sortFunction('position')}>Position</th>
                 <th>Upside/Downside %</th>
                 <th>Your Potential Value ($)</th>
-                <th>Delete</th>
-                <th>Edit</th>
+                {/* <th>Delete</th>
+                <th>Edit</th> */}
               </tr>
             </thead>
               <tbody>

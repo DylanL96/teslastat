@@ -23,9 +23,9 @@ const NavigationBar = () => {
                 <li className="nav-item">
                   <a className="nav-link" href="/about">About</a>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a className="nav-link" href="/create">Add</a>
-                </li>
+                </li> */}
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Tesla Financials
