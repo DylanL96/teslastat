@@ -1,6 +1,8 @@
 # TeslaStat
 A fun full-stack website that compiles important financial data and analyst price targets relating to Tesla ($TSLA) all in one place of the internet! I fetch important financial metrics such as gross margins, operating expenses, net income, retail and institutional price targets that allow people to easily see the financial health of TSLA and to make their own interpretations of the company.
+
 The financial data relating to TSLA is sourced directly from HyperCharts (https://hypercharts.co/tsla).
+
 The current stock price of TSLA is being fetched from Finnhub (https://finnhub.io).
 
 # Project Status
